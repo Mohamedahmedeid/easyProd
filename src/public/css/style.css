@@ -1,0 +1,445 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: #fff; /* Logo text color */
+  font-size: 24px; /* Font size for the logo */
+  text-decoration: none; /* Remove underline */
+}
+
+.main-nav {
+  list-style: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav li {
+  display: inline-block; /* Display items horizontally */
+  margin-right: 20px; /* Spacing between items */
+}
+
+.main-nav li:last-child {
+  margin-right: 0; /* Remove margin from last item */
+}
+
+.main-nav li a {
+  color: #fff; /* Link text color */
+  text-decoration: none; /* Remove underline */
+  font-size: 16px; /* Font size for links */
+  font-weight: bold; /* Make text bold */
+
+}
+
+.main-nav li a:hover {
+  color: #ccc; /* Text color on hover */
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.main-title {
+  text-align: center;
+  margin: 50px 0 100px;
+  font-size: 50px;
+  font-weight: bold;
+  color: #130e4a;
+}
+
+/* Start Header  */
+.nav-bar {
+  background-color: #353a3e;
+  position: relative;
+  -webkit-box-shadow: 0 0 10px #ddd;
+  -moz-box-shadow: 0 0 10px #ddd;
+  box-shadow: 0 0 10px #ddd;
+}
+
+.nav-bar .container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-bar .logo {
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 5px;
+}
+
+@media (max-width: 767px) {
+  .nav-bar .logo {
+    width: 100%;
+    height: 50px;
+  }
+}
+
+.nav-bar .main-nav {
+  display: flex;
+}
+
+@media (max-width: 767px) {
+  .nav-bar .logo {
+    width: 50%; /* Adjust the width to make space for the link */
+    height: 50px;
+  }
+  
+  .nav-bar .main-nav {
+    width: 50%; /* Adjust the width to make space for the link */
+    margin: auto;
+    display: flex;
+    justify-content: flex-end; /* Align the links to the right */
+    align-items: center; /* Center the links vertically */
+  }
+  
+  .nav-bar .main-nav > li {
+    display: none; /* Hide the list items */
+  }
+  
+  .nav-bar .main-nav > li:last-child {
+    display: inline-block; /* Display the last list item */
+    margin-right: 20px; /* Add space for the link */
+  }
+  
+  .nav-bar .main-nav > li:last-child a {
+    padding: 10px; /* Add padding to the link */
+    font-size: 18px; /* Increase the font size of the link */
+  }
+}
+
+
+
+.nav-bar .main-nav > li:hover .mega-menu {
+  opacity: 1;
+  z-index: 100;
+  top: calc(100% + 1px);
+}
+
+.nav-bar .main-nav > li > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 72px;
+  /* to make the height of header rigid whatever happen in nav */
+  position: relative;
+  color: white;
+  padding: 0 30px;
+  overflow: hidden;
+  font-size: 18px;
+  transition: var(--main-transition);
+}
+
+@media (max-width: 767px) {
+  .nav-bar .main-nav > li > a {
+    padding: 10px;
+    font-size: 14px;
+    height: 40px;
+  }
+}
+
+.nav-bar .main-nav > li > a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: var(--main-color);
+  top: 0;
+  left: -100%;
+  transition: var(--main-transition);
+}
+
+.nav-bar .main-nav > li > a:hover {
+  color: var(--main-color);
+  background-color: #fafafa;
+}
+
+.nav-bar .main-nav > li > a:hover::before {
+  left: 0;
+}
+/* Start footer */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 200px;
+  margin-top: 100px;
+  background-color: #353a3e;
+  color: aliceblue;
+}
+
+footer .social {
+  display: flex;
+  align-items: baseline;
+}
+@media (max-width: 767px) {
+  footer .social {
+    justify-content: center;
+  }
+}
+footer .social li {
+  margin-right: 10px;
+}
+
+footer .social li span {
+  color: #b8b1fb;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+footer .social li a {
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  transition: var(--main-transition);
+}
+
+
+@media (max-width: 991px) {
+  footer {
+    padding: 20px;
+  }
+}
+.social a {
+  color: #444b53; /* Blue color for links */
+  text-decoration: none; /* Remove underline */
+  margin-right: 10px; /* Add some space between links */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+  transition: font-size 0.3s ease; /* Smooth transition for font size change */
+
+}
+
+.social a:hover {
+  font-size: 20px;
+  color: #ffffff; /* Darker blue color on hover */
+}
+/* End footer */
+
+canvas {
+  display: block;
+  max-width: 1080px;
+  height: 1080px;
+  border: 2px solid #444b53; /* Change to desired border color */
+  border-radius: 10px;
+}
+.imagePreview img {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+}
+
+
+
+.background {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerz {
+  padding: 20px;
+}
+
+.controls-container {
+  margin-bottom: 20px;
+  background-color: #b3b9c3;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+
+#canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent !important;
+  border: 2px solid #444b53;
+  border-radius: 20px;
+  height: 100%;
+  width: 90%;
+  cursor: pointer;
+  margin-left: 2%;
+}
+
+#toolbar {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#toolbar .custom-button {
+  display: flex;
+  width: 50%;
+  margin: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #444b53;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
+}
+
+#toolbar .custom-button:hover {
+  background-color: #676d73;
+}
+
+#templatePreviews {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.template-preview {
+  width: 200px;
+  margin: 10px;
+  border: 2px solid #352e79;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.template-preview:hover {
+  opacity: 0.7;
+}
+
+#text-controls {
+  margin-left: auto;
+  text-align: right;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#text-controls input[type="text"],
+#descriptionInput {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+  .imagePreview,
+  canvas {
+    height: 50%;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .containerz {
+    padding: 10px;
+  }
+
+  #text-controls {
+    max-width: none;
+    width: 100%;
+  }
+
+  .template-preview {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .controls-container {
+    padding: 10px;
+  }
+
+  #text-controls {
+    padding: 10px;
+  }
+
+  #toolbar .custom-button {
+    font-size: 12px;
+  }
+}
+.arrow-up .arrow-down {
+  font-size: 21px; /* Change font size as desired */
+  font-weight: bold;
+}
+.arrow-btn {
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #444b53;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  width: auto;
+  margin: 2px;
+}

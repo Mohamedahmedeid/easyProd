@@ -1,0 +1,313 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f0f8fcc0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+section {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 95%;
+    max-width: 1080px;
+}
+.selection input[type="number"]{
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(50% - 5px);
+    max-width: 100px;
+    display: inline-block;   
+} 
+
+input[type="text"],
+input[type="button"],
+input[type="number"],
+select {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(50% - 5px);
+    max-width: 180px;
+    display: inline-block;
+}
+
+textarea {
+    margin: auto;
+    width: 100% !important;
+}
+
+input[type="button"] {
+    background-color: #453484;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="button"]:hover {
+    background-color: #301f5d;
+}
+
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: 1080px; /* Adjust height as needed */
+}
+.custom-button {
+    background-color: #007bff; /* Blue color */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor on hover */
+    margin-right: 10px; /* Margin to separate buttons */
+}
+
+.custom-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Positioning for the back button */
+#backButton {
+    background-color: gray;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+#canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent !important;
+    border: 2px solid #1c109ec4;
+    border-radius: 20px;
+    height: 100%;
+    width: 90%;
+    cursor: pointer;
+    margin: auto;
+}
+
+.text {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.text-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.metaData {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    gap: 5px;
+}
+
+.selection {
+    display: flex;
+    justify-content: center;
+    font-size: .8rem;
+    width: 100%;
+    margin: 20px;
+}
+
+.metaData input,
+select {
+    width: calc(33.3% - 5px);
+    max-width: 80px;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+/* Custom styling for the color input */
+.Color {
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Add some border radius */
+    outline: none; /* Remove default focus outline */
+    cursor: pointer; /* Show pointer cursor on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: box-shadow 0.3s ease; /* Add smooth transition for hover effect */
+  }
+  .Color:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+  }
+
+.metaData input[type="color"] {
+    width: calc(25% - 2px);
+}
+
+.text-input select {
+    display: inline;
+    width: 30.5%;
+    max-width: none;
+}
+#dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.text-input {
+    margin-right: 20px;
+}
+
+.metaData {
+    margin-bottom: 10px;
+}
+
+.canvas-container {
+    max-width: 100%;
+    background-color: #f9fafbe3; /* Change to desired background color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(145, 196, 247, 0.529);
+    margin-bottom: 10px;
+}
+
+canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #a3c5f8a1; /* Change to desired border color */
+    border-radius: 10px;
+}
+label,
+.custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Change to desired button background color */
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+label,
+.custom-button:hover {
+    background-color: #0056b3; /* Change to desired button hover color */
+}
+label,
+.action-button {
+    margin-bottom: 20px;
+}
+
+/* Styles for template container */
+.template-placeholder {
+    position: relative;
+    margin: auto;
+    display: flex;
+    top: 25px;
+}
+
+.template-placeholder div {
+    margin: 50px;
+}
+
+.template-placeholder .delete-button {
+    display: flex;
+    position: relative;
+    right: -80px;
+    padding: 11px;
+    background-color: #0d80fa; /* Change to desired button background color */
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+    /* Flexbox styles */
+    .template-placeholder {
+        display: flex;
+        justify-content: space-between; /* To create space between the templates */
+      }
+      
+      .template {
+        position: relative;
+      }
+      
+      .delete-button {
+        position: absolute;
+        bottom: 5px; /* Adjust as needed */
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      /* Adjustments for the image and button */
+      .template-preview {
+        max-width: 100%; /* Ensure the image doesn't exceed its container */
+      }
+#templatePreviews {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.template-preview {
+    width: 200px;
+    margin: 10px;
+    border: 2px solid #352e79;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.canvas-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas-controls button {
+    margin: 5px;
+}
+
+
+
+
+
+/*For screens smaller than 768px */
+ @media (max-width: 767px) {
+    .text-input,
+    .metaData input,
+    select {
+        width: 100%;
+        max-width: none;
+        margin-right: 0;
+    }
+}
+
+/* For screens smaller than 576px */
+@media (max-width: 575px) {
+    .template-placeholder div {
+        margin: 20px;
+    }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Editor</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="nav-bar">
+  <div class="container">
+    <a href="#" class="logo" >Easy</a>
+    <ul class="main-nav">
+      <li><a id="logout" href="#" onclick="logout()">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+<div class="background">
+  <div class="containerz">
+      <!-- Padding and margin with another div -->
+      <div class="controls-container">
+          <!-- Canvas container -->
+          <div id="canvas-container">
+              <canvas id="canvas" width="1080" height="1080"></canvas>
+          </div>
+          <!-- Toolbar -->
+          <div id="toolbar">
+              <label for="imageInput" id="upload-image-button" class="custom-button">ارفع الصورة</label>
+              <input type="file" id="imageInput" accept="image/*" required style="display: none;">
+              <button class="custom-button" id="deleteButton">مسح</button>
+              <button class="custom-button" id="saveButton" >تحميل الصورة</button>
+              <button class="arrow-btn"><span class="arrow-up">&#8593;</span></button>
+              <button class="arrow-btn"><span class="arrow-down">&#8595;</span></button>
+
+          </div>
+
+          <!-- Text controls -->
+          <div id="text-controls">
+            <input type="text" id="titleInput" placeholder="العنوان" dir="rtl">
+            <span id="titleMsg" style="color: red;"></span><br><br>
+            <textarea id="descriptionInput" placeholder="الوصف" dir="rtl"></textarea>
+            <span id="descriptionMsg" style="color: red;"></span><br><br>
+        </div>
+        
+      </div>
+
+  <!-- Template previews -->
+<div id="templatePreviews">
+  <img src="" id="templatePreview1" class="template-preview" alt="Template 1 Preview">
+  <img src="" id="templatePreview2" class="template-preview" alt="Template 2 Preview">
+</div>
+
+  </div>
+</div>
+
+<footer>
+  <h1 style="letter-spacing: 5px">Easy</h1>
+  <div id="contact">
+    <ul class="social">
+      <li><span>Phone: </span>01066666666</li>
+    </ul>
+  </div>
+</footer>
+<script>   
+</script>
+<script src="./script/home.js"></script>
+</body>
+</html>

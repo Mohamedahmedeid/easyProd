@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <section class="addingUser">
+        <h2 style="text-align: center;">ADD USER</h2>
+        <form action="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Username" autocomplete="current-username">
+            <span id="username-error" class="error-message"></span> <!-- Error message for username -->
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+            <span id="password-error" class="error-message"></span> <!-- Error message for password -->
+    
+            <input type="button" id="addUSer" value="Add User" onclick="createUser()">
+        </form>
+    </section>
+    
+<button class="changePasswordButton" onclick="toggleChangPassword()">Change Password</button>
+
+<!-- Modal Overlay for Change Password Section -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <section class="changePassword">
+            <h2>CHANGE PASSWORD</h2>
+            <form action="post">
+                <label for="Username">Username</label>
+                <input type="text" id="Username" placeholder="Username">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" placeholder="New Password">
+                <input type="button" id="changePassword" value="Change Password">
+                <input type="button" class="cancel-button" value="Cancel" onclick="toggleChangPassword()">
+            </form>
+        </section>
+    </div>
+</div>
+
+<section id="users">
+    <h2 style="text-align: center;">USERS</h2>
+    <table id="data-table">
+        <tr>
+            <th>Name</th>
+            <th>Delete</th>
+        </tr>
+        <!-- Table rows will be dynamically added here -->
+    </table>
+</section>
+
+<!-- Logout button -->
+<button class="logout-button" onclick="logout()">Logout</button>
+
+<script src="/script/adminApi.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(#90a2dc, #eee);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #453484;
+    margin-bottom: 20px;
+}
+
+section {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+}
+input[type="text"],
+input[type="password"],
+input[type="button"],
+input[type="tel"],
+input[type="number"],
+select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(50% - 5px);
+    max-width: 300px;
+    display: inline-block;
+}
+.controllers {
+display: flex;
+justify-content: center;
+padding : 5px 25px;
+margin:  auto;
+background-color: #453484;
+color: white;
+}
+.controllers button {
+ margin: 10px;
+ padding: 10px 20px;
+ border-radius: 10px;
+ background-color: #453484;
+ color: white;
+ cursor: pointer;
+ transition: opacity 0.3s ease;
+ }
+
+.controllers button:hover {
+opacity: 0.8;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 60%;
+    margin: 0 auto; /* Center the table horizontally */
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+input[type="button"] {
+    background-color: #453484;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+input[type="button"]:hover {
+    background-color: #301f5d;
+}
+  /* Additional CSS for the modal overlay */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 9999; /* Ensure it's above other elements */
+}
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.changePassword h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.changePassword label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.changePassword input[type="password"] ,.changePassword input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.changePassword input[type="button"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #453484;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.changePassword input[type="button"]:hover {
+    background-color: #fff;
+    color: #453484;
+}
+/* Additional CSS for the cancel button */
+.cancel-button {
+    margin-top: 10px;
+    background-color: #dc3545;
+}
+        /* Additional CSS for the changePasswordButton */
+        .changePasswordButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #453484;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.changePasswordButton:hover {
+    background-color: #453484;
+    color: #ffffff;
+}
+ /* Add CSS styles for the logout button */
+ .logout-button {
+    background-color: #675e5e; /* Red background */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+    display: block;
+    margin: 20px auto;
+}
+
+.logout-button:hover {
+    background-color: #000000; /* Darker red background on hover */
+}
+.error-message {
+    color: red; /* Set the text color to red */
+    font-size: 0.8em; /* Adjust the font size */
+    margin-top: 5px; /* Add some space above the error message */
+    display: block; /* Make the error message display as a block element */
+}
