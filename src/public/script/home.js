@@ -250,11 +250,22 @@ document.addEventListener("DOMContentLoaded", function() {
 displayTemplates();
 const saveButton = document.getElementById('saveButton');
 saveButton.addEventListener('click', function() {
-    const dataUrl = canvas.toDataURL('image/png'); // Change 'image/png' to desired format
+    const dataUrl = canvas.toDataURL('image/png');
     const link = document.createElement('a');
-    link.download = 'Easy.png'; // Change 'canvas_image.png' to desired filename
+    link.download = 'Easy.png';
     link.href = dataUrl;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+
+    // Check if the browser is a mobile device
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // For mobile devices, open the link in a new tab/window
+        window.open(dataUrl, '_blank');
+    } else {
+        // For non-mobile devices, trigger the download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 });
+
