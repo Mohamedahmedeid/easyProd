@@ -1,15 +1,21 @@
 function drawText() {
     const titleText = document.getElementById('titleText');
     const descriptionText = document.getElementById('descriptionText');
+    
     // Set font properties for title text
     ctx.font = `bold ${parseInt(document.getElementById('titleFontSize').value)}px Cairo`;
     ctx.fillStyle = document.getElementById('titleColor').value;
 
     // Calculate the width of the title text
     const titleWidth = ctx.measureText(titleText.value).width;
+    const titleX = (canvas.width - titleWidth) / 2;
 
     // Draw title text at specified position, adjusting for right-to-left rendering
-    ctx.fillText(titleText.value, canvas.width - parseInt(document.getElementById('titleX').value) - titleWidth, parseInt(document.getElementById('titleY').value));
+    ctx.fillText(
+        titleText.value,
+        titleX,
+        parseInt(document.getElementById('titleY').value)
+    );
 
     // Set font properties for description text
     ctx.font = `normal ${parseInt(document.getElementById('descriptionFontSize').value)}px Cairo`;
@@ -18,35 +24,50 @@ function drawText() {
     const descriptionX = parseInt(document.getElementById('descriptionX').value);
     const descriptionY = parseInt(document.getElementById('descriptionY').value);
     const descriptionFontSize = parseInt(document.getElementById('descriptionFontSize').value);
-    const maxLineWidth = canvas.width - descriptionX; // Maximum width for description text
+    const maxLineWidth = 850; // Maximum width for description text
 
     // Split description into multiple lines based on maximum width
-    let lines = [];
-    let line = '';
-    descriptionText.value.split('\n').forEach((paragraph) => {
-        paragraph.split(' ').forEach((word) => {
-            const testLine = line + word + ' ';
-            const testLineWidth = ctx.measureText(testLine).width;
-            if (testLineWidth > maxLineWidth) {
-                lines.push(line);
-                line = word + ' ';
-            } else {
-                line = testLine;
-            }
-        });
-        lines.push(line);
-        line = '';
-    });
-    if (line.length > 0) {
-        lines.push(line);
-    }
+    const descriptionLines = splitTextIntoLines(descriptionText.value, maxLineWidth);
 
     // Draw each line of description text from right to left
-    lines.forEach((line, index) => {
+    descriptionLines.forEach((line, index) => {
+        // Calculate the width of the current line
         const lineWidth = ctx.measureText(line).width;
-        ctx.fillText(line, canvas.width - descriptionX - lineWidth, descriptionY + index * descriptionFontSize);
+        // Calculate the x-coordinate for right-to-left rendering
+        const lineX = canvas.width - (descriptionX + lineWidth);
+        ctx.fillText(line, lineX, descriptionY + index * descriptionFontSize);
     });
 }
+// Function to split text into lines based on maximum width
+function splitTextIntoLines(text,maxWidth) {
+    const words = text.split('');
+    const lines = [];
+    let currentLine = '';
+
+    for (let i = 0; i < words.length; i++) {
+        // If encounter a newline character, start a new line
+        if (words[i] === '\n') {
+            lines.push(currentLine);
+            currentLine = '';
+            continue;
+        }
+
+        const testLine = currentLine.length === 0 ? words[i] : `${currentLine}${words[i]}`; // Join words without space
+        const testWidth = ctx.measureText(testLine).width;
+
+        if (testWidth <= maxWidth) {
+            currentLine = testLine; // Add the word to the current line
+        } else {
+            lines.push(currentLine); // Push the current line to the lines array
+            currentLine = words[i]; // Start a new line with the current word
+        }
+    }
+
+    lines.push(currentLine); // Push the last line to the lines array
+    console.log(lines);
+    return lines;
+}
+
 async function displayTemplates () {
     const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));   
     const userId = userInfo.user._id;
@@ -241,5 +262,24 @@ document.getElementById("backButton").addEventListener("click", function() {
     .catch(error => {
         console.error('Error:', error);})
     });
-        // Set a flag to indicate that the script has already run
-    
+    document.getElementById('titleText').addEventListener('input', function() {
+        if (this.value.length > 30) {
+            this.value = this.value.substring(0, 30);
+            this.classList.add('exceed-limit');
+            document.getElementById('titleError').innerText = 'Title text exceeds 30 characters.';
+        } else {
+            this.classList.remove('exceed-limit');
+            document.getElementById('titleError').innerText = '';
+        }
+    });
+
+    document.getElementById('descriptionText').addEventListener('input', function() {
+        if (this.value.length > 250) {
+            this.value = this.value.substring(0, 250);
+            this.classList.add('exceed-limit');
+            document.getElementById('descriptionError').innerText = 'Description text exceeds 250 characters.';
+        } else {
+            this.classList.remove('exceed-limit');
+            document.getElementById('descriptionError').innerText = '';
+        }
+    });

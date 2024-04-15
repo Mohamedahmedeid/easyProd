@@ -9,7 +9,16 @@
   font-size: 24px; /* Font size for the logo */
   text-decoration: none; /* Remove underline */
 }
+.container a img {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  transition: transform 0.3s ease;
+}
 
+.container a:hover img {
+  transform: scale(1.5);
+}
 .main-nav {
   list-style: none; /* Remove bullet points */
   margin: 0;
@@ -66,6 +75,16 @@ a {
   .container {
     width: 750px;
   }
+  .container a img {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    transition: transform 0.3s ease;
+  }
+  
+  .container a:hover img {
+    transform: scale(1.5);
+  }
 }
 
 /* Medium */
@@ -81,7 +100,15 @@ a {
     width: 1170px;
   }
 }
-
+/* max width */
+@media (max-width: 768px) {
+  .container a img {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    transition: transform 0.3s ease;
+  }
+}
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -219,12 +246,22 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 200px;
   margin-top: 100px;
   background-color: #353a3e;
   color: aliceblue;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 200px;
+  padding-right: 200px;
 }
-
+footer img {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  transition: transform 0.3s ease;
+}footer img:hover {
+  transform: scale(1.5);
+}
 footer .social {
   display: flex;
   align-items: baseline;
@@ -233,7 +270,27 @@ footer .social {
   footer .social {
     justify-content: center;
   }
+  footer {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  footer img {
+    width: 65px;
+    height: 65px;
+    background-color: white;
+    transition: transform 0.3s ease;
+  }
+  
+  .container a:hover img {
+    transform: scale(1.5);
+  }
 }
+
+
 footer .social li {
   margin-right: 10px;
 }
@@ -254,12 +311,6 @@ footer .social li a {
   transition: var(--main-transition);
 }
 
-
-@media (max-width: 991px) {
-  footer {
-    padding: 20px;
-  }
-}
 .social a {
   color: #444b53; /* Blue color for links */
   text-decoration: none; /* Remove underline */

@@ -105,10 +105,10 @@ function drawText() {
             ctx.fontWeight = 'normal'; // Set description font-weight to normal
 
             // Set the maximum width for the description text
-            const maxDescriptionWidth = Math.min(image.width - templateProperties.descriptionMeta.x_position, 700); // Maximum width for description text
+            const maxDescriptionWidth = Math.min(image.width - templateProperties.descriptionMeta.x_position, 850); // Maximum width for description text
 
             // Splitting description text into multiple lines
-            const descriptionLines = splitTextIntoLines(descriptionText.value, ctx.font, maxDescriptionWidth);
+            const descriptionLines = splitTextIntoLines(descriptionText.value, maxDescriptionWidth);
 
             // Calculate the y position for the first line of description text
             let yPosition = templateProperties.descriptionMeta.y_position;
@@ -131,7 +131,7 @@ function drawText() {
 }
 
 // Function to split text into lines based on maximum width
-function splitTextIntoLines(text, font, maxWidth) {
+function splitTextIntoLines(text,maxWidth) {
     const words = text.split('');
     const lines = [];
     let currentLine = '';
@@ -224,9 +224,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     descriptionInput.addEventListener("input", function() {
-        if (this.value.length > 120) {
-            this.value = this.value.slice(0, 120);
-            descriptionMsg.textContent = "الوصف يتجاوز الحد المسموح به من 120 حرفًا";
+        if (this.value.length > 250) {
+            this.value = this.value.slice(0, 250);
+            descriptionMsg.textContent = "الوصف يتجاوز الحد المسموح به من 250 حرفًا";
         } else {
             descriptionMsg.textContent = "";
         }
@@ -255,17 +255,13 @@ saveButton.addEventListener('click', function() {
     link.download = 'Easy.png';
     link.href = dataUrl;
 
-    // Check if the browser is a mobile device
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    document.body.appendChild(link);
 
-    if (isMobile) {
-        // For mobile devices, open the link in a new tab/window
-        window.open(dataUrl, '_blank');
-    } else {
-        // For non-mobile devices, trigger the download
-        document.body.appendChild(link);
+    // Delaying the download action by a short timeout
+    setTimeout(function() {
         link.click();
         document.body.removeChild(link);
-    }
+    }, 100); // Adjust the timeout value as needed
 });
+
 

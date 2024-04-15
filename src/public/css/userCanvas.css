@@ -311,3 +311,9 @@ label,
         margin: 20px;
     }
 }
+.error {
+    color: red;
+}
+.exceed-limit {
+    border: 1px solid red;
+}
