@@ -251,17 +251,27 @@ displayTemplates();
 const saveButton = document.getElementById('saveButton');
 saveButton.addEventListener('click', function() {
     const dataUrl = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.download = 'Easy.png';
-    link.href = dataUrl;
 
-    document.body.appendChild(link);
+    // Convert data URL to Blob
+    fetch(dataUrl)
+        .then(res => res.blob())
+        .then(blob => {
+            // Create a temporary link and trigger the download
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'Easy.png';
 
-    // Delaying the download action by a short timeout
-    setTimeout(function() {
-        link.click();
-        document.body.removeChild(link);
-    }, 100); // Adjust the timeout value as needed
+            // Simulate a click on the link
+            document.body.appendChild(link);
+            link.click();
+
+            // Cleanup
+            document.body.removeChild(link);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 });
+
 
 
