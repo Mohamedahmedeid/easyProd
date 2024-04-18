@@ -41,7 +41,9 @@ const adminController = {
       if (!isValid) {
         return res.status(400).json(errors);
       }
-  
+      if (username === process.env.ADMIN_USERNAME){
+        return res.json({error : "This is Admin Username"});
+      }
       // Check if user already exists
       const existingUser = await User.findOne({ username });
       if (existingUser) {
