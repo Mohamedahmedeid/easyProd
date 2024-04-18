@@ -1,14 +1,16 @@
 {
   "name": "easy_prod",
   "version": "1.0.0",
-  "description": "",
+  "description": "Easy For Automation ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+  "test": "concurrently \"npm run test-jest\" \"npm run test-mocha\" \"npm run test-jasmine\"",
+  "test-jest": "jest",
+  "test-mocha": "mocha",
+  "test-jasmine": "jasmine"    "start": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nemo",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
