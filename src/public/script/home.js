@@ -248,30 +248,36 @@ document.addEventListener("DOMContentLoaded", function() {
     if(data[1]) templatePreview2.src =  data[1];
   }
 displayTemplates();
+
 const saveButton = document.getElementById('saveButton');
+
 saveButton.addEventListener('click', function() {
     const dataUrl = canvas.toDataURL('image/png');
 
-    // Convert data URL to Blob
-    fetch(dataUrl)
-        .then(res => res.blob())
-        .then(blob => {
-            // Create a temporary link and trigger the download
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.download = 'Easy.png';
+    // Check if Safari
+    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+        // For Safari, we need to use a different method due to security restrictions
+        const byteString = atob(dataUrl.split(',')[1]);
+        const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const uint8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < byteString.length; i++) {
+            uint8Array[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([arrayBuffer], { type: mimeString });
+        const url = window.URL.createObjectURL(blob);
 
-            // Simulate a click on the link
-            document.body.appendChild(link);
-            link.click();
+        // Open the image in a new tab
+        window.open(url);
+    } else {
+        // For other browsers, proceed with the original approach
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'Easy.png';
 
-            // Cleanup
-            document.body.removeChild(link);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+        // Simulate a click on the link
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 });
-
-
-
