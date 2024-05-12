@@ -6,7 +6,6 @@ const titleText = document.getElementById('titleInput');
 const descriptionText = document.getElementById('descriptionInput');
 const templatePreview1 = document.getElementById('templatePreview1');
 const templatePreview2 = document.getElementById('templatePreview2');
-
 var selectedTemplate ;
 window.addEventListener('load', function() {
     // Set the default template here
@@ -70,9 +69,27 @@ function applyTemplate(templateSrc) {
     };
     templateImg.src = templateSrc;
 }
+ 
+  // Initialize titleX at the center of the canvas
+let titleX = canvas.width / 2;
 
+function moveTitle(direction) {
+    const titleWidth = ctx.measureText(titleText.value).width / 2;
+    
+    if (direction === 'left') {
+        titleX -= 10;
+        if (titleX - titleWidth < 0) {
+            titleX  = titleWidth;
+        }
+    } else if (direction === 'right') {
+        titleX += 10;
+        if (titleX + titleWidth > canvas.width) {
+            titleX = canvas.width - titleWidth;
+        }
+    }
 
-
+    redrawCanvas();
+}
 function drawText() {
     const property = JSON.parse(sessionStorage.getItem('userTemplatesMeta'));
     const template = JSON.parse(sessionStorage.getItem('templates'));
@@ -86,19 +103,16 @@ function drawText() {
             ctx.fillStyle = templateProperties.titleMeta.textColor;
             ctx.fontWeight = 'bold'; // Set title font-weight to bold
 
-            // Calculate the width of the title text
-            const titleWidth = ctx.measureText(titleText.value).width;
 
-            // Center the title text horizontally
-            const titleX = (canvas.width - titleWidth) / 2;
-
-
+            ctx.textAlign = 'center';
+            // if (titleX - titleWidth > 0) {
             // Draw title text with floating effect
             ctx.fillText(
                 titleText.value,
                 titleX ,
                 templateProperties.titleMeta.y_position
             );
+            // }
             // Set font properties for description text
             ctx.font = `${templateProperties.descriptionMeta.fontSize}px 'Cairo', sans-serif`;
             ctx.fillStyle = templateProperties.descriptionMeta.textColor;
