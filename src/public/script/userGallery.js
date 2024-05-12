@@ -142,7 +142,8 @@ var deleteTemplate = async (index) => {
     try {
       const username = JSON.parse(sessionStorage.getItem('user')); // Provide the username here
       const user = JSON.parse(sessionStorage.getItem('userInfo')); // Provide the template name here
-      const template = user.user.templates.property[index];
+      let template = user.user.templates;
+      template = property[index];
       if (template) {
           const imageUrl = template.imageUrl;
         const response = await fetch(`/admin/deleteTemplate/${imageUrl}`, {
