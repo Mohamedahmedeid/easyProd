@@ -32,17 +32,22 @@
               <button class="custom-button" id="saveButton" >تحميل الصورة</button>
               <button class="arrow-btn"><span class="arrow-up">&#8593;</span></button>
               <button class="arrow-btn"><span class="arrow-down">&#8595;</span></button>
-
+         
           </div>
 
           <!-- Text controls -->
           <div id="text-controls">
             <input type="text" id="titleInput" placeholder="العنوان" dir="rtl">
             <span id="titleMsg" style="color: red;"></span><br><br>
+            <div class="btn-container">
+            <h3 style="padding: 2px;">حرك العنوان</h3>
+            <button class="arrow-btn arrow-left" onclick="moveTitle('left')"><span class="">&#8592;</span></button>
+            <button class="arrow-btn arrow-right" onclick="moveTitle('right')"><span class="">&#8594;</span></button>
+            </div>
             <textarea id="descriptionInput" placeholder="الوصف" dir="rtl"></textarea>
             <span id="descriptionMsg" style="color: red;"></span><br><br>
         </div>
-        
+  
       </div>
 
   <!-- Template previews -->
@@ -62,8 +67,6 @@
     </ul>
   </div>
 </footer>
-<script>   
-</script>
 <script src="./script/home.js"></script>
 </body>
 </html>
