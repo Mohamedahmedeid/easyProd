@@ -154,7 +154,7 @@ var deleteTemplate = async (index) => {
       });      const data = await response.json();
        console.log(data);
     } else {
-          console.log(templateId)
+          console.log(template)
         // console.error('Template at index', index, 'is undefined.');
     }
     }
