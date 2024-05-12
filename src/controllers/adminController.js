@@ -140,7 +140,7 @@ deleteUser: async (req, res) => {
   deleteTemplate: async (req, res) => {
   try {
     const { username  } = req.body; // Assuming username is passed as a parameter in the request
-    const templateId = req.body.templateId._id;
+    const templateId = req.body.template._id;
     const { templatename } = req.params;
     console.log(templateId);
     console.log(templatename);
