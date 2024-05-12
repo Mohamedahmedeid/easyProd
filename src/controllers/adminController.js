@@ -154,7 +154,7 @@ deleteUser: async (req, res) => {
       console.log(`Directory ${user.username} does not exist.`)
     }else {
     // Delete directory associated with the user
-    const userDirPath = path.join(process.cwd(), './app/src/uploads/', user.dirName,`${templatename}`);
+    const userDirPath = path.join(process.cwd(), './uploads/', user.dirName,`${templatename}`);
 
     if (fs.existsSync(userDirPath)) {
       fs.rmSync(userDirPath, { recursive: true });
