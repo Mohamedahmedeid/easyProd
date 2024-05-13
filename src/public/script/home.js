@@ -102,9 +102,10 @@ function drawText() {
             ctx.font = `${templateProperties.titleMeta.fontSize}px 'Cairo', sans-serif`;
             ctx.fillStyle = templateProperties.titleMeta.textColor;
             ctx.fontWeight = 'bold'; // Set title font-weight to bold
+            ctx.direction = 'rtl'; // Set direction to right-to-left
 
 
-            titleX = templateProperties.titleMeta.x_position;
+            titleX = canvas.width - templateProperties.titleMeta.x_position;
             // if (titleX - titleWidth > 0) {
             // Draw title text with floating effect
             ctx.fillText(
