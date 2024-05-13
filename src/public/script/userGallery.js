@@ -8,7 +8,7 @@ function drawText() {
 
     // Calculate the width of the title text
     const titleWidth = ctx.measureText(titleText.value).width;
-    const titleX = (canvas.width - titleWidth) / 2;
+    const titleX = (canvas.width - parseInt(document.getElementById('titleX').value) - titleWidth);
 
     // Draw title text at specified position, adjusting for right-to-left rendering
     ctx.fillText(
