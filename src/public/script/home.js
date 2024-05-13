@@ -104,7 +104,7 @@ function drawText() {
             ctx.fontWeight = 'bold'; // Set title font-weight to bold
 
 
-            ctx.textAlign = 'center';
+            titleX = templateProperties.titleMeta.x_position;
             // if (titleX - titleWidth > 0) {
             // Draw title text with floating effect
             ctx.fillText(
