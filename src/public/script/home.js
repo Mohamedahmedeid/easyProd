@@ -296,38 +296,25 @@ displayTemplates();
 //         document.body.removeChild(link);
 //     }
 // });
-function saveCanvasImage(canvas) {
-    const dataUrl = canvas.toDataURL('image/png');
-    
-    // Open a new document in a new tab
-    const newTab = window.open();
-    newTab.document.open();
-    newTab.document.write(`
-        <html>
-        <head>
-            <title>Saved Image</title>
-        </head>
-        <body>
-            <img src="${dataUrl}" alt="Saved Image">
-        </body>
-        </html>
-    `);
-    newTab.document.close();
+// Get the canvas element and the save button
+const canvas = document.getElementById('canvas');
+const saveButton = document.getElementById('saveButton');
 
-    // Create a download link
-    const link = newTab.document.createElement('a');
+// Add event listener for click event on the save button
+saveButton.addEventListener('click', function() {
+    saveCanvasImage(canvas);
+});
+
+// Function to save canvas image
+function saveCanvasImage(canvas) {
+    // Convert canvas to data URL
+    const dataUrl = canvas.toDataURL('image/png');
+
+    // Create a temporary anchor element
+    const link = document.createElement('a');
     link.href = dataUrl;
     link.download = 'Easy.png';
 
-    // Append the link and simulate a click
-    newTab.document.body.appendChild(link);
+    // Simulate a click on the anchor element
     link.click();
-    newTab.document.body.removeChild(link);
 }
-
-// Event listener for the save button
-const saveButton = document.getElementById('saveButton');
-saveButton.addEventListener('click', function() {
-    const canvas = document.getElementById('canvas'); // replace with your canvas ID
-    saveCanvasImage(canvas);
-});
