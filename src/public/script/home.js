@@ -298,22 +298,32 @@ displayTemplates();
 // });
 function saveCanvasImage(canvas) {
     const dataUrl = canvas.toDataURL('image/png');
-        const newTab = window.open();
-        newTab.document.body.innerHTML = `
-            <img src="${dataUrl}" alt="Saved Image">
-        `;
     
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = 'Easy.png';
+    // Open a new document in a new tab
+    const newTab = window.open();
+    newTab.document.open();
+    newTab.document.write(`
+        <html>
+        <head>
+            <title>Saved Image</title>
+        </head>
+        <body>
+            <img src="${dataUrl}" alt="Saved Image">
+        </body>
+        </html>
+    `);
+    newTab.document.close();
 
-        // Simulate a click on the link
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
- 
+    // Create a download link
+    const link = newTab.document.createElement('a');
+    link.href = dataUrl;
+    link.download = 'Easy.png';
+
+    // Append the link and simulate a click
+    newTab.document.body.appendChild(link);
+    link.click();
+    newTab.document.body.removeChild(link);
 }
-
 
 // Event listener for the save button
 const saveButton = document.getElementById('saveButton');
