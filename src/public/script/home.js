@@ -302,7 +302,7 @@ function saveCanvasImage(canvas) {
         newTab.document.body.innerHTML = `
             <img src="${dataURL}" alt="Saved Image">
         `;
-    });
+    
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'Easy.png';
@@ -311,7 +311,8 @@ function saveCanvasImage(canvas) {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    }
+ 
+}
 
 
 // Event listener for the save button
