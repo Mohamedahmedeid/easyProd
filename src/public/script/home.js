@@ -303,16 +303,36 @@ function saveCanvasImage(canvas) {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     if (isSafari) {
-        // Create an anchor element
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.target = '_blank'; // Open in a new tab
-        link.rel = 'noopener noreferrer'; // Security best practices
-        document.body.appendChild(link);
-
-        // Simulate a click on the link
-        link.click();
-        document.body.removeChild(link);
+        // Open a new window
+        const newWindow = window.open();
+        
+        // Create the HTML content for the new page
+        const htmlContent = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Canvas Image</title>
+            </head>
+            <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh;">
+                <img src="${dataUrl}" alt="Canvas Image" style="cursor: pointer;" onclick="downloadImage('${dataUrl}');" />
+                <script>
+                    function downloadImage(url) {
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = 'Easy.png';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                </script>
+            </body>
+            </html>
+        `;
+        
+        // Write the HTML content to the new window
+        newWindow.document.write(htmlContent);
     } else {
         // For other browsers, proceed with the direct download approach
         const link = document.createElement('a');
