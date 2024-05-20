@@ -300,7 +300,7 @@ displayTemplates();
 const saveButton = document.getElementById('saveButton');
 
 saveButton.addEventListener('click', function() {
-  html2canvas(canvas).then(canvas => {
+  html2canvas(document.body).then(canvas => {
     const link = document.createElement('a');
     link.href = canvas.toDataURL('image/png');
     link.download = 'Easy.png';
