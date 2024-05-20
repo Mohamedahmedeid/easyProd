@@ -298,7 +298,11 @@ displayTemplates();
 // });
 function saveCanvasImage(canvas) {
     const dataUrl = canvas.toDataURL('image/png');
-    
+        const newTab = window.open();
+        newTab.document.body.innerHTML = `
+            <img src="${dataURL}" alt="Saved Image">
+        `;
+    });
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'Easy.png';
