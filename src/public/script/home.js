@@ -303,7 +303,7 @@ function saveCanvasImage(canvas) {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     if (isSafari) {
-        // For Safari, handle Blob and open image in a new tab
+        // For Safari, handle Blob and create an object URL to open in a new tab
         const byteString = atob(dataUrl.split(',')[1]);
         const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
         const arrayBuffer = new ArrayBuffer(byteString.length);
@@ -313,11 +313,16 @@ function saveCanvasImage(canvas) {
             uint8Array[i] = byteString.charCodeAt(i);
         }
 
-        const blob = new Blob([arrayBuffer], { type: mimeString });
-        const url = window.URL.createObjectURL(blob);
+        const blob = new Blob([uint8Array], { type: mimeString });
+        const reader = new FileReader();
 
-        // Open the image in a new tab
-        window.open(url);
+        reader.onload = function(event) {
+            const url = event.target.result;
+            // Open the image in a new tab
+            window.open(url);
+        };
+
+        reader.readAsDataURL(blob);
     } else {
         // For other browsers, proceed with the direct download approach
         const link = document.createElement('a');
