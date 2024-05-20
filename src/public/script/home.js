@@ -299,10 +299,15 @@ displayTemplates();
 const saveButton = document.getElementById('saveButton');
 
 saveButton.addEventListener('click', function() {
-  html2canvas(canvas).then(canvas => {
-    const link = document.createElement('a');
-    link.href = canvas.toDataURL('image/png');
-    link.download = 'Easy.png';
-    link.click();
+  html2canvas(canvas).then(capturedCanvas => {
+    capturedCanvas.toBlob(function(blob) {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Easy.png'; // Change filename as needed
+      link.click();
+      URL.revokeObjectURL(url); // Revoke temporary URL after download
+    }, 'image/png'); // Specify desired image format (optional)
   });
 });
+
