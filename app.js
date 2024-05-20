@@ -16,8 +16,14 @@ app.use( express.static(path.join(__dirname, 'src/uploads')));
 
 // Apply middleware
 app.use(bodyParser.json({ limit: '50mb' })); // Adjust the limit as needed
-app.use(cors());
+// app.use(cors());
+const corsOptions = {
+  origin: 'https://instq8.art/', // Allow requests from this specific origin
+  methods: ['GET'], // Allow these HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow these request headers
+};
 
+app.use(cors(corsOptions)); 
 // Routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src/assets', 'login.html'));
