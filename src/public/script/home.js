@@ -299,19 +299,10 @@ displayTemplates();
 const saveButton = document.getElementById('saveButton');
 
 saveButton.addEventListener('click', function() {
-    saveCanvasImage(canvas);
-});
-
-// Function to save canvas image
-function saveCanvasImage(canvas) {
-    // Convert canvas to data URL
-    const dataUrl = canvas.toDataURL('image/png');
-
-    // Create a temporary anchor element
+  html2canvas(canvas).then(canvas => {
     const link = document.createElement('a');
-    link.href = dataUrl;
+    link.href = canvas.toDataURL('image/png');
     link.download = 'Easy.png';
-
-    // Simulate a click on the anchor element
     link.click();
-}
+  });
+});
