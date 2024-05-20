@@ -296,11 +296,8 @@ displayTemplates();
 //         document.body.removeChild(link);
 //     }
 // });
-// Get the canvas element and the save button
-const canvas = document.getElementById('canvas');
 const saveButton = document.getElementById('saveButton');
 
-// Add event listener for click event on the save button
 saveButton.addEventListener('click', function() {
     saveCanvasImage(canvas);
 });
