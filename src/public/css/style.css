@@ -331,7 +331,7 @@ canvas {
   max-width: 1080px;
   height: 1080px;
   border: 2px solid #444b53; /* Change to desired border color */
-  border-radius: 10px;
+/*   border-radius: 10px; */
 }
 .imagePreview img {
   height: 100%;
@@ -368,7 +368,7 @@ canvas {
   align-items: center;
   background-color: transparent !important;
   border: 2px solid #444b53;
-  border-radius: 20px;
+/*   border-radius: 20px; */
   height: 100%;
   width: 90%;
   cursor: pointer;
