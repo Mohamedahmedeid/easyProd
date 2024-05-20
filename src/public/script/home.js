@@ -264,28 +264,62 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 displayTemplates();
 
-const saveButton = document.getElementById('saveButton');
+// const saveButton = document.getElementById('saveButton');
 
-saveButton.addEventListener('click', function() {
+// saveButton.addEventListener('click', function() {
+//     const dataUrl = canvas.toDataURL('image/png');
+
+//     // Check if Safari
+//     if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+//         // For Safari, we need to use a different method due to security restrictions
+//         const byteString = atob(dataUrl.split(',')[1]);
+//         const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+//         const arrayBuffer = new ArrayBuffer(byteString.length);
+//         const uint8Array = new Uint8Array(arrayBuffer);
+//         for (let i = 0; i < byteString.length; i++) {
+//             uint8Array[i] = byteString.charCodeAt(i);
+//         }
+//         const blob = new Blob([arrayBuffer], { type: mimeString });
+//         const url = window.URL.createObjectURL(blob);
+
+//         // Open the image in a new tab
+//         window.open(url);
+//     } else {
+//         // For other browsers, proceed with the original approach
+//         const link = document.createElement('a');
+//         link.href = dataUrl;
+//         link.download = 'Easy.png';
+
+//         // Simulate a click on the link
+//         document.body.appendChild(link);
+//         link.click();
+//         document.body.removeChild(link);
+//     }
+// });
+function saveCanvasImage(canvas) {
     const dataUrl = canvas.toDataURL('image/png');
 
-    // Check if Safari
-    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
-        // For Safari, we need to use a different method due to security restrictions
+    // Check if Safari (excluding Chrome)
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (isSafari) {
+        // For Safari, handle Blob and open image in a new tab
         const byteString = atob(dataUrl.split(',')[1]);
         const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
         const arrayBuffer = new ArrayBuffer(byteString.length);
         const uint8Array = new Uint8Array(arrayBuffer);
+
         for (let i = 0; i < byteString.length; i++) {
             uint8Array[i] = byteString.charCodeAt(i);
         }
+
         const blob = new Blob([arrayBuffer], { type: mimeString });
         const url = window.URL.createObjectURL(blob);
 
         // Open the image in a new tab
         window.open(url);
     } else {
-        // For other browsers, proceed with the original approach
+        // For other browsers, proceed with the direct download approach
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'Easy.png';
@@ -295,4 +329,11 @@ saveButton.addEventListener('click', function() {
         link.click();
         document.body.removeChild(link);
     }
+}
+
+// Event listener for the save button
+const saveButton = document.getElementById('saveButton');
+saveButton.addEventListener('click', function() {
+    const canvas = document.getElementById('canvas'); // replace with your canvas ID
+    saveCanvasImage(canvas);
 });
