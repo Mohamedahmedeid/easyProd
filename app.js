@@ -18,7 +18,7 @@ app.use( express.static(path.join(__dirname, 'src/uploads')));
 app.use(bodyParser.json({ limit: '50mb' })); // Adjust the limit as needed
 // app.use(cors());
 const corsOptions = {
-  origin: * , // Allow requests from this specific origin
+  origin: '*' , // Allow requests from this specific origin
   methods: ['GET'], // Allow these HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow these request headers
 };
