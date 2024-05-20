@@ -300,7 +300,7 @@ function saveCanvasImage(canvas) {
     const dataUrl = canvas.toDataURL('image/png');
 
     // Check if Safari on iOS
-    const isSafariIOS = /iP(ad|hone|od)/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+    const isSafariIOS = window.navigator && window.navigator.platform && window.navigator.platform === 'iPhone' && window.navigator.vendor && window.navigator.vendor.includes('Apple');
 
     if (isSafariIOS) {
         // Open a new window
