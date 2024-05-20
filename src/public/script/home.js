@@ -314,15 +314,18 @@ function saveCanvasImage(canvas) {
         }
 
         const blob = new Blob([uint8Array], { type: mimeString });
-        const reader = new FileReader();
+        const url = URL.createObjectURL(blob);
 
-        reader.onload = function(event) {
-            const url = event.target.result;
-            // Open the image in a new tab
-            window.open(url);
-        };
+        // Create an anchor element and simulate a click to open the image in a new tab
+        const link = document.createElement('a');
+        link.href = url;
+        link.target = '_blank'; // Ensure it opens in a new tab
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
 
-        reader.readAsDataURL(blob);
+        // Revoke the object URL after a short delay
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
     } else {
         // For other browsers, proceed with the direct download approach
         const link = document.createElement('a');
