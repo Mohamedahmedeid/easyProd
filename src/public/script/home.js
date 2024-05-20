@@ -299,10 +299,10 @@ displayTemplates();
 function saveCanvasImage(canvas) {
     const dataUrl = canvas.toDataURL('image/png');
 
-    // Check if Safari (excluding Chrome)
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    // Check if Safari on iOS
+    const isSafariIOS = /iP(ad|hone|od)/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 
-    if (isSafari) {
+    if (isSafariIOS) {
         // Open a new window
         const newWindow = window.open();
         
