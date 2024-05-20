@@ -69,20 +69,6 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.0.0-rc.5/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const saveButton = document.getElementById('saveButton');
-
-    saveButton.addEventListener('click', function() {
-      html2canvas(canvas).then(canvas => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'Easy.png';
-        link.click();
-      });
-    });
-  });
-</script>
 <script src="./script/home.js"></script>
 </body>
 </html>
