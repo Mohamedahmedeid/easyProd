@@ -308,7 +308,7 @@ function saveCanvasImage(canvas) {
         link.click();
         document.body.removeChild(link);
     }
-}
+
 
 // Event listener for the save button
 const saveButton = document.getElementById('saveButton');
