@@ -303,29 +303,21 @@ function saveCanvasImage(canvas) {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     if (isSafari) {
-        // For Safari, handle Blob and create an object URL to open in a new tab
-        const byteString = atob(dataUrl.split(',')[1]);
-        const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
-        const arrayBuffer = new ArrayBuffer(byteString.length);
-        const uint8Array = new Uint8Array(arrayBuffer);
+        // Create an image element
+        const img = document.createElement('img');
+        img.src = dataUrl;
+        img.style.display = 'none'; // Hide the image
+        document.body.appendChild(img);
 
-        for (let i = 0; i < byteString.length; i++) {
-            uint8Array[i] = byteString.charCodeAt(i);
-        }
-
-        const blob = new Blob([uint8Array], { type: mimeString });
-        const url = URL.createObjectURL(blob);
-
-        // Create an anchor element and simulate a click to download the image
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'Easy.png';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Revoke the object URL after a short delay
-        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        // Add click event listener to initiate the download
+        img.addEventListener('click', function() {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'Easy.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
     } else {
         // For other browsers, proceed with the direct download approach
         const link = document.createElement('a');
