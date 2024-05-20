@@ -303,21 +303,16 @@ function saveCanvasImage(canvas) {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     if (isSafari) {
-        // Create an image element
-        const img = document.createElement('img');
-        img.src = dataUrl;
-        img.style.display = 'none'; // Hide the image
-        document.body.appendChild(img);
+        // Create an anchor element
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.target = '_blank'; // Open in a new tab
+        link.rel = 'noopener noreferrer'; // Security best practices
+        document.body.appendChild(link);
 
-        // Add click event listener to initiate the download
-        img.addEventListener('click', function() {
-            const link = document.createElement('a');
-            link.href = dataUrl;
-            link.download = 'Easy.png';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
+        // Simulate a click on the link
+        link.click();
+        document.body.removeChild(link);
     } else {
         // For other browsers, proceed with the direct download approach
         const link = document.createElement('a');
