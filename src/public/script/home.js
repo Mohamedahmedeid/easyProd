@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import * as html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const imageInput = document.getElementById('imageInput');
