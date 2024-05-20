@@ -316,44 +316,26 @@ function saveCanvasImage(canvas) {
         const blob = new Blob([uint8Array], { type: mimeString });
         const url = URL.createObjectURL(blob);
 
-        // Create an image element that users can click to download
-        const img = document.createElement('img');
-        img.src = url;
-        img.style.cursor = 'pointer';
-        img.alt = 'Canvas Image';
-        img.title = 'Click to download';
-        document.body.appendChild(img);
+        // Create an anchor element and simulate a click to download the image
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Easy.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
 
-        // Add click event to the image to download it
-        img.addEventListener('click', function() {
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'Easy.png';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-
-        // Revoke the object URL after a short delay to release memory
+        // Revoke the object URL after a short delay
         setTimeout(() => URL.revokeObjectURL(url), 1000);
     } else {
-        // For other browsers, create an image element and set up the download link
-        const img = document.createElement('img');
-        img.src = dataUrl;
-        img.style.cursor = 'pointer';
-        img.alt = 'Canvas Image';
-        img.title = 'Click to download';
-        document.body.appendChild(img);
+        // For other browsers, proceed with the direct download approach
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'Easy.png';
 
-        // Add click event to the image to download it
-        img.addEventListener('click', function() {
-            const link = document.createElement('a');
-            link.href = dataUrl;
-            link.download = 'Easy.png';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
+        // Simulate a click on the link
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 }
 
